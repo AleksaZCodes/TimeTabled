@@ -1,0 +1,36 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@nuxtjs/color-mode": "^3.4.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/supabase": "^1.2.2",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@supabase/gotrue-js": "^2.64.3",
+    "@tailwindcss/typography": "^0.5.13",
+    "@vee-validate/nuxt": "^4.13.1",
+    "nuxt": "^3.12.3",
+    "pica": "^9.0.1",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@iconify-json/fa6-solid": "^1.1.21",
+    "@vesp/nuxt-fontawesome": "^1.0.4",
+    "daisyui": "^4.12.10",
+    "prettier": "^3.3.2",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.5"
+  }
+}
