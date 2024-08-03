@@ -50,9 +50,15 @@ export default defineNuxtConfig({
         'user-pen',
         'angle-up',
         'angle-down',
-        'arrow-up-right-from-square'
+        'arrow-up-right-from-square',
+        'plus',
+        'star',
+        'arrow-up',
+        'people-group',
+        'circle-question'
       ],
-      brands: ['google', 'github', 'x-twitter']
+      brands: ['google', 'github', 'x-twitter'],
+      regular: ['star']
     }
   },
 

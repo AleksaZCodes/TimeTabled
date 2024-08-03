@@ -10,7 +10,7 @@
       </NuxtLink>
     </template>
   </Navbar>
-  <main>
+  <main class="mx-auto max-w-7xl p-4 md:px-6">
     <slot />
   </main>
   <Footer />

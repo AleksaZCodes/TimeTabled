@@ -49,11 +49,11 @@
 
 <script setup>
 useHead({
-  title: "Terms of Service | LeanLaunch",
-  meta: [{ name: "description", content: "LeanLaunch Terms of Service" }],
-});
+  title: 'Terms of Service | LeanLaunch',
+  meta: [{ name: 'description', content: 'LeanLaunch Terms of Service' }]
+})
 
 definePageMeta({
-  layout: "legal",
-});
+  layout: 'legal'
+})
 </script>

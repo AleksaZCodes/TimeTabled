@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-base-200 text-base-content">
     <div
-      class="mx-auto flex max-w-7xl flex-wrap justify-between gap-8 px-8 py-8"
+      class="mx-auto flex max-w-7xl flex-wrap justify-between gap-8 px-6 py-4"
     >
       <aside class="flex flex-col gap-2">
         <Logo />

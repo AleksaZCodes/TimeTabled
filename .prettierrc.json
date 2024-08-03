@@ -2,8 +2,8 @@
   "tabWidth": 2,
   "useTabs": false,
   "plugins": [
-    "prettier-plugin-tailwindcss",
-    "prettier-plugin-organize-attributes"
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-tailwindcss"
   ],
   "singleQuote": true,
   "trailingComma": "none",

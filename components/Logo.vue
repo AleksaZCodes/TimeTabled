@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    class="btn flex h-fit shadow-none min-h-0 w-fit items-center border-none bg-transparent p-0 hover:bg-transparent"
+    class="btn flex h-fit min-h-0 w-fit items-center border-none bg-transparent p-0 shadow-none hover:bg-transparent"
     :class="gapSize[size] || gapSize['sm']"
     to="/"
   >

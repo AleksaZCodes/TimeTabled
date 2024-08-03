@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-outline btn-block group">
+  <button class="group btn btn-outline btn-block">
     <FontAwesome
       class="text-xl text-base-content group-hover:text-base-100"
       :icon="icon"

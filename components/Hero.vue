@@ -1,6 +1,6 @@
 <template>
   <section
-    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-10 px-8 py-8 lg:flex-row lg:gap-16 lg:py-20"
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-10 px-6 py-4 lg:flex-row lg:gap-16 lg:py-20"
   >
     <div
       class="flex w-full flex-col items-center gap-6 text-center lg:items-start lg:gap-10 lg:text-left"
@@ -22,7 +22,7 @@
         MVPs and products using AI and lean principles.
       </p>
 
-      <NuxtLink class="group btn btn-primary btn-wide mt-4" to="/signup">
+      <NuxtLink class="group btn btn-primary btn-wide mt-4" to="/login">
         <div class="relative">
           <FontAwesome
             class="text-xl transition-transform duration-100 group-hover:-rotate-45 group-hover:scale-110"
