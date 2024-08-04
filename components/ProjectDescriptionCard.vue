@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="card col-span-3 gap-1 gap-4 overflow-x-auto bg-base-200 p-6 shadow"
-  >
+  <div class="card col-span-3 gap-2 overflow-x-auto bg-base-200 p-6 shadow">
     <button class="btn w-fit bg-base-100 text-lg">
       <FontAwesome class="text-xl text-primary" icon="people-group" />
       TeamTesla

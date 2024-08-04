@@ -55,7 +55,10 @@ export default defineNuxtConfig({
         'star',
         'arrow-up',
         'people-group',
-        'circle-question'
+        'circle-question',
+        'id-badge',
+        'table-cells',
+        'filter'
       ],
       brands: ['google', 'github', 'x-twitter'],
       regular: ['star']

@@ -1,13 +1,20 @@
 <template>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
-    <BoardsCard class="col-span-3" />
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <TeamBar />
 
-    <TasksCard class="col-span-2" />
+    <PeopleCard />
 
-    <ProjectDescriptionCard class="col-span-3" />
-
-    <ProjectChatCard class="col-span-2 h-fit" />
+    <PublicProjectsCard />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+  title: 'Team Overview | LeanLaunch',
+  meta: [{ name: 'description', content: 'LeanLaunch Team Overview' }]
+})
+
+definePageMeta({
+  layout: 'default'
+})
+</script>
