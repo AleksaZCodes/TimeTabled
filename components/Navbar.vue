@@ -6,7 +6,7 @@
     <div class="hidden gap-10 text-base md:flex">
       <slot name="links" />
     </div>
-    <slot name="buttons" />
+    <div class="flex gap-2"><slot name="buttons" /></div>
   </header>
 </template>
 

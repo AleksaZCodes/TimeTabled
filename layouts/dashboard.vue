@@ -3,6 +3,7 @@
     <template #links></template>
     <template #buttons>
       <AccountModal />
+      <TeamModal />
     </template>
   </Navbar>
 

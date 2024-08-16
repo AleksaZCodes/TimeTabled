@@ -1,7 +1,7 @@
 <template>
   <div>
     <button class="btn btn-sm" onclick="accountModal.showModal()">
-      <FontAwesome icon="user" /> Account and team
+      <FontAwesome icon="user" /> Account
     </button>
 
     <dialog class="modal" id="accountModal">
@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-const supabase = useSupabaseClient()
+// const supabase = useSupabaseClient()
 
 const userMetadata = ref(null)
 const loading = ref(false)
@@ -62,17 +62,17 @@ const loading = ref(false)
 //   loading.value = false
 // }
 
-// const logOut = async () => {
-//   loading.value = true
+const logOut = async () => {
+  loading.value = true
 
-//   const { error } = await useSupabaseClient().auth.signOut()
+  const { error } = await useSupabaseClient().auth.signOut()
 
-//   if (error) {
-//     alert(error)
-//   }
+  if (error) {
+    alert(error)
+  }
 
-//   await useRouter().push('/login')
-// }
+  await useRouter().push('/login')
+}
 
 // await getUserMetadata()
 </script>

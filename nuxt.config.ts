@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
     '@vee-validate/nuxt',
-    '@vesp/nuxt-fontawesome'
+    '@vesp/nuxt-fontawesome',
+    '@pinia/nuxt'
   ],
 
   googleFonts: {
