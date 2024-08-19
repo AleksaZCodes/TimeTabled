@@ -13,6 +13,8 @@
 </template>
 
 <script setup>
+import { _error } from '#tailwind-config/theme/caretColor'
+
 useHead({
   title: 'Dashboard | LeanLaunch',
   meta: [{ name: 'description', content: 'LeanLaunch Dashboard' }]
@@ -23,10 +25,13 @@ definePageMeta({
 })
 
 const loading = ref(true)
-const user = useSupabaseUser()
-const supabase = useSupabaseClient()
+const userStore = useUserStore()
+const teamsStore = useTeamsStore()
 
 const checkForNewUser = async () => {
+  const supabase = useSupabaseClient()
+  const user = useSupabaseUser()
+
   const id = user.value.id
 
   const { data, error } = await supabase
@@ -35,7 +40,7 @@ const checkForNewUser = async () => {
     .eq('id', id)
     .limit(1)
 
-  if (error && error.code !== 'PGRST116') {
+  if (error) {
     alert(error.message)
     loading.value = false
     return
@@ -46,67 +51,22 @@ const checkForNewUser = async () => {
       .from('users')
       .insert({ id, github_user_id: user.value.user_metadata.provider_id })
 
-    await createPersonalTeam()
+    await teamsStore.createTeam({
+      name: `${user.value.user_metadata.full_name}'s Team`
+    })
   }
 
+  userStore.userMetadata = user.value.user_metadata
+
+  teamsStore.fetchTeams()
+
+  userStore.newUser = false
   loading.value = false
 }
 
-const createPersonalTeam = async () => {
-  const { data: chatData, error: chatError } = await supabase
-    .from('chats')
-    .insert({})
-    .select('id')
-    .single()
-
-  if (chatError) {
-    alert(chatError.message)
-    return
-  }
-
-  const chatId = chatData.id
-
-  const { data: teamData, error: teamError } = await supabase
-    .from('teams')
-    .insert({
-      name: `${user.value.user_metadata.full_name}'s Team`,
-      public: false,
-      chat_id: chatId
-    })
-    .select('id')
-    .single()
-
-  if (teamError) {
-    alert(teamError.message)
-    return
-  }
-
-  const teamId = teamData.id
-
-  const { data: userTeamData, error: userTeamError } = await supabase
-    .from('users_teams')
-    .insert({
-      user_id: user.value.id,
-      team_id: teamId
-    })
-
-  if (userTeamError) {
-    alert(userTeamError.message)
-    return
-  }
-
-  const { data: teamUserRoleData, error: teamUserRoleError } = await supabase
-    .from('teams_users_roles')
-    .insert({
-      team_id: teamId,
-      user_id: user.value.id,
-      role_id: 1
-    })
-
-  if (teamUserRoleError) {
-    alert(teamUserRoleError.message)
-  }
+if (userStore.newUser) {
+  checkForNewUser()
+} else {
+  loading.value = false
 }
-
-checkForNewUser()
 </script>

@@ -16,20 +16,28 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
   }
 
-  if (to.path.startsWith('/projects/')) {
-    if (to.path.startsWith('/projects/overview')) {
-      return
+  if (to.path.startsWith('/projects/overview/')) {
+    const user = useSupabaseUser()
+    if (user.value) {
+      return navigateTo(to.path.replace('/projects/overview/', '/projects/'))
     }
+  }
+
+  if (to.path.startsWith('/projects/')) {
     const user = useSupabaseUser()
     if (!user.value) {
       return navigateTo(to.path.replace('/projects/', '/projects/overview/'))
     }
   }
 
-  if (to.path.startsWith('/teams/')) {
-    if (to.path.startsWith('/teams/overview')) {
-      return
+  if (to.path.startsWith('/teams/overview/')) {
+    const user = useSupabaseUser()
+    if (user.value) {
+      return navigateTo(to.path.replace('/teams/overview/', '/teams/'))
     }
+  }
+
+  if (to.path.startsWith('/teams/')) {
     const user = useSupabaseUser()
     if (!user.value) {
       return navigateTo(to.path.replace('/teams/', '/teams/overview/'))

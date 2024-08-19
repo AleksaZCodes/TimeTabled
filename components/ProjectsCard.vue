@@ -37,7 +37,7 @@
       <div
         class="aspect-square min-h-[200px] w-44 md:h-full md:w-auto md:max-w-56"
       >
-        <EisenhowerMatrix class="min-h-[200px]" id="eisenhower-projects" />
+        <!-- <EisenhowerMatrix class="min-h-[200px]" id="eisenhower-projects" /> -->
       </div>
     </div>
   </div>

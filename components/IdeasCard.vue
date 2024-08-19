@@ -3,9 +3,7 @@
     <div class="flex justify-between">
       <h2 class="card-title">Ideas</h2>
 
-      <button class="btn btn-square btn-ghost btn-sm">
-        <FontAwesome class="text-lg text-primary" icon="plus" />
-      </button>
+      <IdeasModal />
     </div>
 
     <div class="divider my-0"></div>
@@ -14,18 +12,30 @@
       <div class="flex h-44 w-full flex-col gap-2 overflow-y-auto md:h-60">
         <div
           class="card flex flex-row items-center justify-between bg-base-100 px-4 py-2 shadow"
-          v-for="i in 16"
-          :key="'idea' + i"
+          v-if="ideasStore.ideas.length"
+          v-for="idea in ideasStore.ideas"
+          :key="'idea' + idea.id"
         >
           <div class="overflow-x-auto">
-            <h3 class="truncate font-bold">My Idea</h3>
+            <h3 class="truncate font-bold">{{ idea.title }}</h3>
             <p class="truncate text-sm opacity-80">
-              Lorem ipsum dolor sit amet
+              {{ idea.description }}
             </p>
           </div>
-          <button class="btn btn-square btn-ghost btn-sm">
-            <FontAwesome class="text-lg text-primary" icon="pen-to-square" />
-          </button>
+          <EditIdeasModal :idea="idea" :key="'edit-idea' + idea.id" />
+        </div>
+
+        <div
+          class="card flex flex-row items-center justify-between bg-base-100 px-4 py-2 shadow"
+          v-else
+        >
+          <div class="overflow-x-auto">
+            <h3 class="truncate font-bold">Add your first idea</h3>
+            <p class="truncate text-sm opacity-80">
+              It's time to start tinkering!
+            </p>
+          </div>
+          <IdeasModal />
         </div>
       </div>
 
@@ -34,10 +44,19 @@
       <div
         class="aspect-square min-h-[200px] w-44 md:h-full md:w-auto md:max-w-56"
       >
-        <EisenhowerMatrix class="min-h-[200px]" id="eisenhower-ideas" />
+        <EisenhowerMatrix
+          class="min-h-[200px]"
+          id="eisenhower-ideas"
+          :store="ideasStore"
+          :items="ideasStore.ideas"
+          items-name="ideas"
+        />
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const ideasStore = useIdeasStore()
+ideasStore.fetchIdeas()
+</script>

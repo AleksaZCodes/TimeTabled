@@ -15,20 +15,22 @@
           <div class="flex items-center gap-4">
             <div class="avatar">
               <div class="w-16 rounded-full">
-                <img :src="userMetadata?.avatar_url" />
+                <img :src="userStore.userMetadata?.avatar_url" />
               </div>
             </div>
 
             <div>
-              <h3 class="text-xl font-bold">{{ userMetadata?.full_name }}</h3>
+              <h3 class="text-xl font-bold">
+                {{ userStore.userMetadata?.full_name }}
+              </h3>
 
-              <p class="opacity-80">{{ userMetadata?.user_name }}</p>
+              <p class="opacity-80">{{ userStore.userMetadata?.user_name }}</p>
             </div>
           </div>
 
           <a
             class="btn btn-circle btn-ghost"
-            :href="`https://github.com/${userMetadata?.user_name}`"
+            :href="`https://github.com/${userStore.userMetadata?.user_name}`"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -43,36 +45,21 @@
 </template>
 
 <script setup>
-// const supabase = useSupabaseClient()
-
-const userMetadata = ref(null)
 const loading = ref(false)
-
-// const getUserMetadata = async () => {
-//   loading.value = true
-
-//   const { data, error } = await supabase.auth.getUser()
-
-//   if (error) {
-//     alert(error)
-//     return
-//   }
-
-//   userMetadata.value = data.user.user_metadata
-//   loading.value = false
-// }
+const userStore = useUserStore()
 
 const logOut = async () => {
   loading.value = true
 
-  const { error } = await useSupabaseClient().auth.signOut()
+  const supabase = useSupabaseClient()
+  const { error } = await supabase.auth.signOut()
 
   if (error) {
     alert(error)
+    return
   }
 
+  userStore.newUser = true
   await useRouter().push('/login')
 }
-
-// await getUserMetadata()
 </script>

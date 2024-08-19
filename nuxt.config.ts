@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@vee-validate/nuxt',
     '@vesp/nuxt-fontawesome',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt'
   ],
 
   googleFonts: {

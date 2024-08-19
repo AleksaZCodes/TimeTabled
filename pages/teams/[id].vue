@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <div>{{ $route.params.id }}</div>
 </template>
 
-<script setup></script>
+<script setup>
+definePageMeta({
+  layout: 'dashboard'
+})
+</script>
