@@ -1,6 +1,7 @@
 export const useIdeasStore = defineStore('ideas', {
   state: () => ({
     ideas: [],
+    convertedIdeas: [],
     eisenhower: Array(16).fill('')
   }),
   actions: {
@@ -8,14 +9,42 @@ export const useIdeasStore = defineStore('ideas', {
       const supabase = useSupabaseClient()
       const { data, error } = await supabase
         .from('ideas')
-        .select('id, title, description, urgency, importance, created_at')
+        .select(
+          'id, title, description, urgency, importance, created_at, converted'
+        )
         .eq('created_by', useSupabaseUser().value.id)
         .order('created_at', { ascending: false })
       if (error) {
         console.error(error)
         return
       }
-      this.ideas = data
+
+      this.ideas = data.filter(idea => !idea.converted)
+      this.convertedIdeas = data.filter(idea => idea.converted)
+
+      this.generateEisenhower()
+      this.sortIdeas()
+    },
+    async fetchIdeaById(id) {
+      const supabase = useSupabaseClient()
+      const { data, error } = await supabase
+        .from('ideas')
+        .select(
+          'id, title, description, urgency, importance, created_at, converted'
+        )
+        .eq('id', id)
+        .single()
+      if (error) {
+        console.error(error)
+        return
+      }
+
+      if (data.converted) {
+        this.convertedIdeas.push(data)
+      } else {
+        this.ideas.push(data)
+      }
+
       this.generateEisenhower()
       this.sortIdeas()
     },
@@ -24,7 +53,7 @@ export const useIdeasStore = defineStore('ideas', {
       const { data, error } = await supabase
         .from('ideas')
         .insert(idea)
-        .select('id, title, description')
+        .select('id')
         .single()
 
       if (error) {
@@ -32,7 +61,7 @@ export const useIdeasStore = defineStore('ideas', {
         return
       }
 
-      this.ideas.unshift(data)
+      this.ideas.unshift({ ...idea, id: data.id })
       this.generateEisenhower()
       this.sortIdeas()
     },
@@ -40,7 +69,7 @@ export const useIdeasStore = defineStore('ideas', {
       const supabase = useSupabaseClient()
       const { error } = await supabase
         .from('ideas')
-        .update({ urgency, importance })
+        .update({ urgency: urgency, importance: importance })
         .eq('id', ideaId)
       if (error) {
         alert(error.message)
@@ -151,7 +180,31 @@ export const useIdeasStore = defineStore('ideas', {
         return idea
       })
       this.sortIdeas()
+    },
+    async convertIdea(ideaId, converted) {
+      const supabase = useSupabaseClient()
+
+      const { error } = await supabase
+        .from('ideas')
+        .update({ converted })
+        .eq('id', ideaId)
+      if (error) {
+        alert(error.message)
+        return
+      }
+
+      this.ideas = this.ideas.map(idea => {
+        if (idea.id === ideaId) {
+          idea.converted = converted
+        }
+        return idea
+      })
+
+      this.ideas = this.ideas.filter(idea => !idea.converted)
+      this.convertedIdeas = this.ideas.filter(idea => idea.converted)
+
+      this.generateEisenhower()
+      this.sortIdeas()
     }
-  },
-  persist: true
+  }
 })

@@ -29,15 +29,16 @@
               </option>
             </select>
 
-            <a
+            <RouterLink
               class="btn btn-square btn-ghost"
-              :href="`/teams/${teamsStore.currentTeamId}`"
+              :to="`/teams/${teamsStore.currentTeamId}`"
+              onclick="teamModal.close()"
             >
               <FontAwesome
                 class="text-lg text-primary"
                 icon="arrow-up-right-from-square"
               />
-            </a>
+            </RouterLink>
           </div>
         </div>
 

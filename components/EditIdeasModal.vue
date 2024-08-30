@@ -55,26 +55,6 @@
           </button>
         </form>
 
-        <div class="collapse collapse-arrow">
-          <input type="checkbox" />
-
-          <h3 class="collapse-title px-0 text-xl font-bold">
-            Convert to project
-          </h3>
-
-          <div class="collapse-content flex flex-col gap-5 p-0">
-            <p>Make this idea into a project to start working on it.</p>
-
-            <button
-              class="btn btn-primary btn-block"
-              :disabled="loading"
-              @click="convertIdea"
-            >
-              Convert
-            </button>
-          </div>
-        </div>
-
         <div class="collapse collapse-arrow m-0">
           <input type="checkbox" />
 
@@ -114,24 +94,7 @@ const dialog = ref(null)
 const editIdea = async () => {
   loading.value = true
 
-  console.log({
-    ideaId: props.idea.id,
-    title: title.value,
-    description: description.value
-  })
-
   await ideasStore.updateIdea(props.idea.id, title.value, description.value)
-
-  dialog.value.close()
-  setTimeout(() => {
-    loading.value = false
-  })
-}
-
-const convertIdea = async () => {
-  loading.value = true
-
-  // await ideasStore.convertIdea(props.idea.id)
 
   dialog.value.close()
   setTimeout(() => {

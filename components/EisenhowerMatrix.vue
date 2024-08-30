@@ -91,21 +91,35 @@ const props = defineProps({
   }
 })
 
-const loading = ref(false)
+const loading = ref(true)
 const eisenhower = ref(props.store.eisenhower)
+
+onMounted(() => {
+  loading.value = false
+})
+
+watch(
+  () => props.store.eisenhower,
+  () => {
+    eisenhower.value = props.store.eisenhower
+  }
+)
 
 const setItem = async index => {
   loading.value = true
 
   let newItemId = eisenhower.value[index - 1]
 
+  // Null the previous item's urgency and importance if a new item is selected
+  const oldItemId = props.store.eisenhower[index - 1]
+  if (oldItemId && oldItemId !== newItemId) {
+    await props.store.setUrgencyAndImportance(oldItemId, null, null)
+  }
+
   // If the selected option is empty, clear the current item
-  if (newItemId === '') {
-    const oldItemId = props.store.eisenhower[index - 1]
-    if (oldItemId !== '') {
-      await props.store.setUrgencyAndImportance(oldItemId, null, null)
-      props.store.eisenhower[index - 1] = ''
-    }
+  if (newItemId === '' && oldItemId !== newItemId) {
+    props.store.eisenhower[index - 1] = ''
+    await props.store.setUrgencyAndImportance(oldItemId, null, null)
     loading.value = false
     return
   }
@@ -118,18 +132,9 @@ const setItem = async index => {
   const urgency = col / 4
   const importance = (5 - row) / 4
 
-  // Clear the existing item in the selected cell
-  const oldItemId = props.store.eisenhower[index - 1]
-  if (oldItemId !== '') {
-    await props.store.setUrgencyAndImportance(oldItemId, null, null)
-    props.store.eisenhower[index - 1] = ''
-  }
-
   // Set the new item's urgency and importance
   props.store.eisenhower[index - 1] = newItemId
   await props.store.setUrgencyAndImportance(newItemId, urgency, importance)
-
-  eisenhower.value = props.store.eisenhower
 
   loading.value = false
 }

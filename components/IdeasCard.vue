@@ -12,7 +12,7 @@
       <div class="flex h-44 w-full flex-col gap-2 overflow-y-auto md:h-60">
         <div
           class="card flex flex-row items-center justify-between bg-base-100 px-4 py-2 shadow"
-          v-if="ideasStore.ideas.length"
+          v-if="ideasStore.ideas.length && !loading"
           v-for="idea in ideasStore.ideas"
           :key="'idea' + idea.id"
         >
@@ -27,7 +27,7 @@
 
         <div
           class="card flex flex-row items-center justify-between bg-base-100 px-4 py-2 shadow"
-          v-else
+          v-else-if="!loading"
         >
           <div class="overflow-x-auto">
             <h3 class="truncate font-bold">Add your first idea</h3>
@@ -37,6 +37,8 @@
           </div>
           <IdeasModal />
         </div>
+
+        <LoadingSection v-else width="" height="h-full" />
       </div>
 
       <div class="divider m-0 md:divider-horizontal"></div>
@@ -57,6 +59,15 @@
 </template>
 
 <script setup>
+const loading = ref(true)
+
 const ideasStore = useIdeasStore()
-ideasStore.fetchIdeas()
+
+onMounted(async () => {
+  await ideasStore.fetchIdeas()
+
+  setTimeout(() => {
+    loading.value = false
+  }, 100)
+})
 </script>

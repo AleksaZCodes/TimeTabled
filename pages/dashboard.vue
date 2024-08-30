@@ -13,8 +13,6 @@
 </template>
 
 <script setup>
-import { _error } from '#tailwind-config/theme/caretColor'
-
 useHead({
   title: 'Dashboard | LeanLaunch',
   meta: [{ name: 'description', content: 'LeanLaunch Dashboard' }]
@@ -31,6 +29,7 @@ const teamsStore = useTeamsStore()
 const checkForNewUser = async () => {
   const supabase = useSupabaseClient()
   const user = useSupabaseUser()
+  const session = useSupabaseSession()
 
   const id = user.value.id
 
@@ -61,6 +60,7 @@ const checkForNewUser = async () => {
   teamsStore.fetchTeams()
 
   userStore.newUser = false
+  userStore.github_access_token = session.value.provider_token
   loading.value = false
 }
 
