@@ -4,7 +4,7 @@
       <Navbar>
         <template #buttons>
           <NuxtLink class="btn btn-sm" to="/#app">
-            <FontAwesome icon="rocket" /> Go to app
+            <FontAwesome icon="rocket" /> Scroll to app
           </NuxtLink>
         </template>
       </Navbar>

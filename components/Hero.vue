@@ -21,20 +21,6 @@
         No more back-and-forth—add your timetables and let TimeTabled find the
         perfect times for you and your team to meet.
       </p>
-
-      <NuxtLink class="group btn btn-primary btn-wide mt-4" to="/#app">
-        <div class="relative">
-          <FontAwesome
-            class="text-xl transition-transform duration-100 group-hover:-rotate-45 group-hover:scale-110"
-            icon="rocket"
-          />
-          <FontAwesome
-            class="absolute -bottom-2 left-[0.315rem] rotate-180 scale-0 text-xs transition-transform duration-100 group-hover:scale-110"
-            icon="fire"
-          />
-        </div>
-        Get Started
-      </NuxtLink>
     </div>
 
     <!-- Hero image -->

@@ -55,7 +55,9 @@ export default defineNuxtConfig({
         'id-badge',
         'table-cells',
         'filter',
-        'clock'
+        'clock',
+        'caret-right',
+        'share-nodes'
       ],
       brands: ['google', 'github', 'x-twitter'],
       regular: ['star']
