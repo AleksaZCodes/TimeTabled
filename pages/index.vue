@@ -1,8 +1,13 @@
 <template>
-  <div class="alert alert-warning" v-if="!loading && isFirefox" role="alert">
-    Firefox is not fully supported. Please use Chrome for the best experience.
-  </div>
   <LoadingSection v-if="loading" />
+  <div
+    class="alert bg-primary font-bold text-white"
+    v-if="!loading && isFirefox"
+    role="alert"
+  >
+    There are known issues on Firefox. Please use Chrome for the best
+    experience.
+  </div>
   <Hero v-if="!loading" />
   <section
     class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 py-14 lg:gap-8 lg:py-28"
@@ -155,7 +160,7 @@ onMounted(() => {
   if (timetable) {
     schedulesStore.decodeSchedule(timetable)
   }
-  isFirefox.value = navigator.userAgent.toLowerCase().includes('firefox')
   loading.value = false
+  isFirefox.value = navigator.userAgent.toLowerCase().includes('firefox')
 })
 </script>
