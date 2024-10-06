@@ -7,10 +7,10 @@
     <FontAwesome
       class="text-primary"
       :class="iconSize[size] || iconSize['sm']"
-      icon="rocket"
+      icon="clock"
     />
     <span class="font-bold" :class="textSize[size] || textSize['sm']">
-      LeanLaunch
+      TimeTabled
     </span>
   </NuxtLink>
 </template>

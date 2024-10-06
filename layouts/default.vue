@@ -2,13 +2,9 @@
   <div class="flex min-h-screen w-full flex-col justify-between">
     <div>
       <Navbar>
-        <template #links>
-          <a class="link-hover link">Pricing</a>
-          <a class="link-hover link">FAQ</a>
-        </template>
         <template #buttons>
-          <NuxtLink class="btn btn-sm" to="/login">
-            <FontAwesome icon="user" /> Login
+          <NuxtLink class="btn btn-sm" to="/#app">
+            <FontAwesome icon="rocket" /> Go to app
           </NuxtLink>
         </template>
       </Navbar>

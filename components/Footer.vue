@@ -5,12 +5,20 @@
     >
       <aside class="flex flex-col gap-2">
         <Logo />
-        <p>Stop overengineering, start launching</p>
+        <p>Stop guessing, start connecting</p>
         <p>Copyright © 2024 - All rights reserved</p>
-        <p>Made by @AleksaZCodes</p>
+        <p>
+          Made by
+          <a
+            class="link-hover font-bold"
+            href="https://github.com/AleksaZCodes"
+            target="_blank"
+            >@AleksaZCodes</a
+          >
+        </p>
       </aside>
 
-      <div class="flex min-w-0 flex-wrap justify-between gap-16">
+      <!-- <div class="flex min-w-0 flex-wrap justify-between gap-16">
         <nav class="flex max-w-fit flex-col">
           <h6 class="footer-title">Services</h6>
           <a class="link-hover link">Branding</a>
@@ -36,7 +44,7 @@
             >Privacy policy</NuxtLink
           >
         </nav>
-      </div>
+      </div> -->
     </div>
   </footer>
 </template>

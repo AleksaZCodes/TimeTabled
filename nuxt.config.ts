@@ -4,10 +4,8 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/supabase',
     '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
-    '@vee-validate/nuxt',
     '@vesp/nuxt-fontawesome',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt'
@@ -30,10 +28,6 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: ['~/assets/css/tailwind.css', { injectPosition: 'first' }],
     exposeConfig: true
-  },
-
-  supabase: {
-    redirect: false
   },
 
   fontawesome: {
@@ -60,7 +54,8 @@ export default defineNuxtConfig({
         'circle-question',
         'id-badge',
         'table-cells',
-        'filter'
+        'filter',
+        'clock'
       ],
       brands: ['google', 'github', 'x-twitter'],
       regular: ['star']
