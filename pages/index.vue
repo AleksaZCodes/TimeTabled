@@ -87,16 +87,24 @@
 </template>
 
 <script setup>
-// useSeoMeta({
-//   ogImage: '/banner.png'
-// })
+useSeoMeta({
+  ogImage: '/banner.png'
+})
 
 useHead({
   link: {
     rel: 'icon',
     type: 'image/ico',
     href: '/favicon.ico'
-  }
+  },
+  title: 'Stop Guessing, Start Connecting | TimeTabled',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Let TimeTabled find the overlap in your timetables, so you can focus on what really matters—time spent together.'
+    }
+  ]
 })
 
 const loading = ref(true)
