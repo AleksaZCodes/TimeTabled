@@ -34,7 +34,7 @@
                   ref="startTimeInput"
                 />
                 <div
-                  class="btn w-fit bg-base-200 text-2xl font-bold"
+                  class="mg:text-2xl btn w-fit bg-base-200 text-xl font-bold"
                   @click="openStartTimeInput"
                 >
                   <FontAwesome class="text-primary" icon="clock" />&nbsp;{{
@@ -53,7 +53,7 @@
                   ref="endTimeInput"
                 />
                 <div
-                  class="btn w-fit bg-base-200 text-2xl font-bold"
+                  class="btn w-fit bg-base-200 text-xl font-bold md:text-2xl"
                   @click="openEndTimeInput"
                 >
                   <FontAwesome class="text-primary" icon="clock" />&nbsp;{{
