@@ -87,6 +87,18 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  ogImage: '/banner.png'
+})
+
+useHead({
+  link: {
+    rel: 'icon',
+    type: 'image/ico',
+    href: '/favicon.ico'
+  }
+})
+
 const loading = ref(true)
 const isFirefox = ref(false)
 const schedulesStore = useSchedulesStore()

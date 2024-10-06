@@ -12,21 +12,25 @@ export default defineNuxtConfig({
     '@nuxtjs/seo'
   ],
 
+  site: {
+    name: 'Stop Guessing, Start Connecting | TimeTabled',
+    url: 'https://timetabled.pages.dev',
+    description:
+      'Let TimeTabled find the overlap in your timetables, so you can focus on what really matters—time spent together.',
+    defaultLocale: 'en'
+  },
+
   seo: {
-    baseUrl: 'https://timetabled.pages.dev',
     og: {
-      title: 'Stop Guessing, Start Connecting | TimeTabled',
-      description:
-        'Let TimeTabled find the overlap in your timetables, so you can focus on what really matters—time spent together.',
-      image: '/banner.png',
       type: 'website',
-      url: 'https://timetabled.pages.dev'
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'robots', content: 'index,follow' }
-    ]
+      locale: 'en_US',
+      url: 'https://timetabled.pages.dev',
+      images: [
+        {
+          url: '/banner.png'
+        }
+      ]
+    }
   },
 
   googleFonts: {
