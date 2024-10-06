@@ -87,9 +87,9 @@
 </template>
 
 <script setup>
-useSeoMeta({
-  ogImage: '/banner.png'
-})
+// useSeoMeta({
+//   ogImage: '/banner.png'
+// })
 
 useHead({
   link: {

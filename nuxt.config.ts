@@ -8,30 +8,16 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@vesp/nuxt-fontawesome',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/seo'
+    '@pinia-plugin-persistedstate/nuxt'
   ],
 
-  site: {
-    name: 'Stop Guessing, Start Connecting | TimeTabled',
-    url: 'https://timetabled.pages.dev',
-    description:
-      'Let TimeTabled find the overlap in your timetables, so you can focus on what really matters—time spent together.',
-    defaultLocale: 'en'
-  },
-
-  seo: {
-    og: {
-      type: 'website',
-      locale: 'en_US',
-      url: 'https://timetabled.pages.dev',
-      images: [
-        {
-          url: '/banner.png'
-        }
-      ]
-    }
-  },
+  // site: {
+  //   name: 'Stop Guessing, Start Connecting | TimeTabled',
+  //   url: 'https://timetabled.pages.dev',
+  //   description:
+  //     'Let TimeTabled find the overlap in your timetables, so you can focus on what really matters—time spent together.',
+  //   defaultLocale: 'en'
+  // },
 
   googleFonts: {
     families: {
