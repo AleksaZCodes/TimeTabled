@@ -109,7 +109,10 @@ useHead({
       content:
         'Let TimeTabled find the overlap in your timetables, so you can focus on what really matters—time spent together.'
     }
-  ]
+  ],
+  htmlAttrs: {
+    lang: 'en'
+  }
 })
 
 const loading = ref(true)
