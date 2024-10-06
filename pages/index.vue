@@ -92,17 +92,6 @@ const isFirefox = ref(false)
 const schedulesStore = useSchedulesStore()
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
-useHead({
-  title: 'Stop Guessing, Start Connecting | TimeTabled',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'No more back-and-forth—add your timetables and let TimeTabled find the perfect times for you and your team to meet.'
-    }
-  ]
-})
-
 const calculateDuration = (startTime, endTime) => {
   const start = new Date(0, 0, 0, ...startTime.split(':'))
   const end = new Date(0, 0, 0, ...endTime.split(':'))

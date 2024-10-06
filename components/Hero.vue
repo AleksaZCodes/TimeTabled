@@ -18,8 +18,8 @@
       </h1>
 
       <p class="max-w-2xl text-lg leading-relaxed opacity-80">
-        No more back-and-forth—add your timetables and let TimeTabled find the
-        perfect times for you and your team to meet.
+        Let TimeTabled find the overlap in your timetables, so you can focus on
+        what really matters—time spent together.
       </p>
     </div>
 
