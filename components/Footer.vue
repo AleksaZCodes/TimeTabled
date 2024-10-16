@@ -10,7 +10,7 @@
         <a href="https://github.com/AleksaZCodes" target="_blank">
           <div class="flex items-center">
             <p>Made by</p>
-            &nbsp; &nbsp;``
+            &nbsp; &nbsp;
             <div class="avatar">
               <div class="w-6 rounded-full">
                 <img src="assets/images/pfp.jpg" alt="Profile picture" />
