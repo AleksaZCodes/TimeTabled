@@ -28,13 +28,21 @@
             <div class="flex items-center justify-between gap-2">
               <div>
                 <input
-                  class="sr-only mt-12"
+                  class="rounded-btn bg-base-200 p-2 px-4 text-xl font-bold md:text-2xl"
                   v-model="startTime"
+                  :class="
+                    $device.isFirefox || $device.isSafari || $device.isIos
+                      ? ''
+                      : 'sr-only mt-12'
+                  "
                   type="time"
                   ref="startTimeInput"
                 />
                 <div
                   class="btn w-fit bg-base-200 text-xl font-bold md:text-2xl"
+                  v-if="
+                    !($device.isFirefox || $device.isSafari || $device.isIos)
+                  "
                   @click="openStartTimeInput"
                 >
                   <FontAwesome class="text-primary" icon="clock" />&nbsp;{{
@@ -47,13 +55,21 @@
 
               <div>
                 <input
-                  class="sr-only mt-12"
+                  class="rounded-btn bg-base-200 p-2 px-4 text-xl font-bold md:text-2xl"
                   v-model="endTime"
+                  :class="
+                    $device.isFirefox || $device.isSafari || $device.isIos
+                      ? ''
+                      : 'sr-only mt-12'
+                  "
                   type="time"
                   ref="endTimeInput"
                 />
                 <div
                   class="btn w-fit bg-base-200 text-xl font-bold md:text-2xl"
+                  v-if="
+                    !($device.isFirefox || $device.isSafari || $device.isIos)
+                  "
                   @click="openEndTimeInput"
                 >
                   <FontAwesome class="text-primary" icon="clock" />&nbsp;{{

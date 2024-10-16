@@ -7,15 +7,19 @@
         <Logo />
         <p>Stop guessing, start connecting</p>
         <p>Copyright © 2024 - All rights reserved</p>
-        <p>
-          Made by
-          <a
-            class="link-hover font-bold"
-            href="https://github.com/AleksaZCodes"
-            target="_blank"
-            >@AleksaZCodes</a
-          >
-        </p>
+        <a href="https://github.com/AleksaZCodes" target="_blank">
+          <div class="flex items-center">
+            <p>Made by</p>
+            &nbsp; &nbsp;``
+            <div class="avatar">
+              <div class="w-6 rounded-full">
+                <img src="assets/images/pfp.jpg" alt="Profile picture" />
+              </div>
+            </div>
+            &nbsp;
+            <p class="link-hover font-bold">AleksaZCodes</p>
+          </div>
+        </a>
       </aside>
 
       <!-- <div class="flex min-w-0 flex-wrap justify-between gap-16">

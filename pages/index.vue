@@ -1,14 +1,6 @@
 <template>
   <LoadingSection v-if="loading" />
-  <div
-    class="alert bg-primary font-bold text-white"
-    v-if="!loading && isFirefox"
-    role="alert"
-  >
-    There are known issues on Firefox. Please use Chrome for the best
-    experience.
-  </div>
-  <Hero v-if="!loading" />
+  <Hero v-else />
   <section
     class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 py-14 lg:gap-8 lg:py-28"
     id="app"
@@ -116,7 +108,6 @@ useHead({
 })
 
 const loading = ref(true)
-const isFirefox = ref(false)
 const schedulesStore = useSchedulesStore()
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
@@ -164,6 +155,5 @@ onMounted(() => {
     schedulesStore.decodeSchedule(timetable)
   }
   loading.value = false
-  isFirefox.value = navigator.userAgent.toLowerCase().includes('firefox')
 })
 </script>

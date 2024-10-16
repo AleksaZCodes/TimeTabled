@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@vesp/nuxt-fontawesome',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxtjs/device'
   ],
 
   site: {
