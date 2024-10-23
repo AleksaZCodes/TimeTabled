@@ -73,17 +73,26 @@
         />
       </div>
     </div>
-    <button
-      class="btn btn-primary btn-sm"
-      @click="schedulesStore.schedules.push([])"
-    >
-      <FontAwesome class="text-lg" icon="plus" />
-      Add Timetable
-    </button>
+    <div class="flex gap-2">
+      <button
+        class="btn btn-primary btn-sm"
+        @click="schedulesStore.schedules.push([])"
+      >
+        <FontAwesome class="text-lg" icon="plus" />
+        Add Timetable
+      </button>
+      <button class="btn btn-sm" @click="decodeTimetable">
+        <FontAwesome class="text-lg" icon="keyboard" />
+        Decode Timetable
+      </button>
+    </div>
   </section>
 </template>
 
 <script setup>
+import { Capacitor } from '@capacitor/core'
+import { Share } from '@capacitor/share'
+
 useSeoMeta({
   ogImage: '/banner.png'
 })
@@ -136,15 +145,37 @@ const copyToClipboard = schedule => {
   }
 
   if (url.length <= 2000) {
-    navigator.clipboard.writeText(url)
-    alert(
-      'Copied a link to clipboard, with your timetable encoded within it. Share it with your team.'
-    )
+    if (Capacitor.isNativePlatform()) {
+      Share.share({
+        title: 'Timetable',
+        text: 'Here is my timetable:',
+        url: url
+      })
+    } else {
+      navigator.clipboard.writeText(url)
+      alert(
+        'Copied a link to clipboard, with your timetable encoded within it. Share it with your team.'
+      )
+    }
   } else {
-    navigator.clipboard.writeText(encoded)
-    alert(
-      'Copied your timetable encoded inside a string. Share it with your team (beware, it is longer than 2000 characters).'
-    )
+    if (Capacitor.isNativePlatform()) {
+      Share.share({
+        title: 'Timetable',
+        text: `Here is my timetable, encoded inside a string: ${encoded}`
+      })
+    } else {
+      navigator.clipboard.writeText(encoded)
+      alert(
+        'Copied your timetable encoded inside a string. Share it with your team (beware, it is longer than 2000 characters).'
+      )
+    }
+  }
+}
+
+const decodeTimetable = () => {
+  const timetable = prompt('Paste your Timetable code string here:')
+  if (timetable) {
+    schedulesStore.decodeSchedule(timetable)
   }
 }
 

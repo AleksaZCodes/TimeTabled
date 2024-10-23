@@ -1,3 +1,6 @@
+import { Capacitor } from '@capacitor/core'
+import { Preferences } from '@capacitor/preferences'
+
 export const useSchedulesStore = defineStore('schedules', {
   state: () => ({
     schedules: []
@@ -151,5 +154,11 @@ export const useSchedulesStore = defineStore('schedules', {
       return mergedIntervals
     }
   },
-  persist: true
+  persist: {
+    storage: Capacitor.isNativePlatform()
+      ? Preferences
+      : import.meta.client
+        ? localStorage
+        : null
+  }
 })
