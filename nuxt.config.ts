@@ -67,7 +67,9 @@ export default defineNuxtConfig({
         'filter',
         'clock',
         'caret-right',
-        'share-nodes'
+        'share-nodes',
+        'qrcode',
+        'keyboard'
       ],
       brands: ['google', 'github', 'x-twitter'],
       regular: ['star']
