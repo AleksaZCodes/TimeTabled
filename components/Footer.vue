@@ -22,8 +22,8 @@
         </a>
       </aside>
 
-      <!-- <div class="flex min-w-0 flex-wrap justify-between gap-16">
-        <nav class="flex max-w-fit flex-col">
+      <div class="flex min-w-0 flex-wrap justify-between gap-16">
+        <!-- <nav class="flex max-w-fit flex-col">
           <h6 class="footer-title">Services</h6>
           <a class="link-hover link">Branding</a>
           <a class="link-hover link">Design</a>
@@ -37,18 +37,18 @@
           <a class="link-hover link">Contact</a>
           <a class="link-hover link">Jobs</a>
           <a class="link-hover link">Press kit</a>
-        </nav>
+        </nav> -->
 
         <nav class="flex max-w-fit flex-col">
           <h6 class="footer-title">Legal</h6>
-          <NuxtLink class="link-hover link" to="/terms-of-service"
+          <!-- <NuxtLink class="link-hover link" to="/terms-of-service"
             >Terms of service</NuxtLink
-          >
+          > -->
           <NuxtLink class="link-hover link" to="/privacy-policy"
             >Privacy policy</NuxtLink
           >
         </nav>
-      </div> -->
+      </div>
     </div>
   </footer>
 </template>
