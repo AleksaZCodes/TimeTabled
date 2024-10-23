@@ -147,8 +147,7 @@ const copyToClipboard = schedule => {
   if (url.length <= 2000) {
     if (Capacitor.isNativePlatform()) {
       Share.share({
-        title: 'Timetable',
-        text: 'Here is my timetable:',
+        dialogTitle: 'Share your Timetable',
         url: url
       })
     } else {
@@ -160,8 +159,8 @@ const copyToClipboard = schedule => {
   } else {
     if (Capacitor.isNativePlatform()) {
       Share.share({
-        title: 'Timetable',
-        text: `Here is my timetable, encoded inside a string: ${encoded}`
+        dialogTitle: 'Share your Timetable',
+        text: `${encoded}`
       })
     } else {
       navigator.clipboard.writeText(encoded)
