@@ -14,7 +14,7 @@
     "@capacitor/android": "^6.1.2",
     "@capacitor/core": "^6.1.2",
     "@capacitor/ios": "^6.1.2",
-    "@capacitor/preferences": "^5.0.8",
+    "@capacitor/preferences": "^6.0.2",
     "@capacitor/share": "^6.0.2",
     "@nuxtjs/color-mode": "^3.4.2",
     "@nuxtjs/device": "^3.2.4",
