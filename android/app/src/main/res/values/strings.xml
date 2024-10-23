@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TimeTabled</string>
+    <string name="title_activity_main">TimeTabled</string>
+    <string name="package_name">xyz.aleksazcodes.timetabled</string>
+    <string name="custom_url_scheme">xyz.aleksazcodes.timetabled</string>
+</resources>
