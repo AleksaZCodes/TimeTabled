@@ -136,8 +136,7 @@ const formatDuration = minutes => {
 
 const copyToClipboard = schedule => {
   const encoded = schedulesStore.encodeSchedule(schedule)
-  let url = `${window.location.protocol}//${window.location.hostname}${window.location.port ? `:${window.location.port}` : ''}/`
-  url += '?timetable=' + encoded
+  let url = `https://timetabled.pages.dev/?timetable=${encoded}`
 
   if (encoded == 'W10%3D') {
     alert('Empty timetable!')
