@@ -30,7 +30,7 @@
                 )
               }}</span>
               <span class="font-bold"
-                >{{ interval.count }} /
+                >{{ interval.overlapCount }} /
                 {{ schedulesStore.schedules.length }}</span
               >
             </div>

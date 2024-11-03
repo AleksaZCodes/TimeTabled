@@ -91,64 +91,65 @@ export const useSchedulesStore = defineStore('schedules', {
       }
     },
     findCommonIntervals(day) {
-      const intervals = []
+      const events = []
 
-      // Collect all intervals for the specified day across all schedules
+      // Step 1: Gather all events and mark their start and end on the timeline
       this.schedules.forEach(schedule => {
         const dayEvents = schedule.filter(event => event.day === day)
         dayEvents.forEach(({ startTime, endTime }) => {
-          intervals.push({ startTime, endTime })
+          events.push({ time: startTime, type: 'start' })
+          events.push({ time: endTime, type: 'end' })
         })
       })
 
-      // Sort intervals by start time for easier processing
-      intervals.sort((a, b) => a.startTime.localeCompare(b.startTime))
+      // Step 2: Sort events by time, prioritizing 'end' before 'start' if times are the same
+      events.sort((a, b) => {
+        if (a.time === b.time) return a.type === 'end' ? -1 : 1
+        return a.time.localeCompare(b.time)
+      })
 
-      const mergedIntervals = []
-      let tempInterval = null
+      const commonIntervals = []
+      let currentOverlapCount = 0
+      let intervalStart = null
 
-      intervals.forEach(({ startTime, endTime }) => {
-        if (!tempInterval) {
-          tempInterval = { startTime, endTime, count: 1 }
-        } else {
-          // Check if there is an overlap or if intervals are within 5 minutes of each other
-          const tempEnd = new Date(
-            `2000-01-01T${tempInterval.endTime}:00Z`
-          ).getTime()
-          const currStart = new Date(`2000-01-01T${startTime}:00Z`).getTime()
-
-          // Merge intervals if they overlap or are within a threshold (5 mins here)
-          if (currStart <= tempEnd + 5 * 60 * 1000) {
-            // Merge by averaging start and end times
-            const tempStart = new Date(
-              `2000-01-01T${tempInterval.startTime}:00Z`
-            ).getTime()
-            const currEnd = new Date(`2000-01-01T${endTime}:00Z`).getTime()
-
-            const newStart = new Date((tempStart + currStart) / 2)
-              .toISOString()
-              .substr(11, 5)
-            const newEnd = new Date((tempEnd + currEnd) / 2)
-              .toISOString()
-              .substr(11, 5)
-
-            tempInterval.startTime = newStart
-            tempInterval.endTime = newEnd
-            tempInterval.count += 1
-          } else {
-            // Push the completed interval and start a new one
-            mergedIntervals.push(tempInterval)
-            tempInterval = { startTime, endTime, count: 1 }
+      // Step 3: Sweep through events to find overlaps
+      events.forEach(event => {
+        if (event.type === 'start') {
+          currentOverlapCount += 1
+          // Start a new interval if we reach at least two overlapping schedules
+          if (currentOverlapCount === 2) {
+            intervalStart = event.time
           }
+        } else {
+          // If we're ending an overlap that has at least two schedules, record it
+          if (currentOverlapCount >= 2 && intervalStart) {
+            commonIntervals.push({
+              startTime: intervalStart,
+              endTime: event.time,
+              overlapCount: currentOverlapCount
+            })
+            intervalStart = null
+          }
+          currentOverlapCount -= 1
         }
       })
 
-      // Push the last interval
-      if (tempInterval) {
-        mergedIntervals.push(tempInterval)
-      }
+      // Step 4: Sort intervals by overlap count (descending), then by duration (descending)
+      commonIntervals.sort((a, b) => {
+        // Compare by overlap count first
+        if (b.overlapCount !== a.overlapCount)
+          return b.overlapCount - a.overlapCount
+        // If overlap counts are equal, compare by duration
+        const durationA =
+          new Date(`2000-01-01T${a.endTime}:00Z`).getTime() -
+          new Date(`2000-01-01T${a.startTime}:00Z`).getTime()
+        const durationB =
+          new Date(`2000-01-01T${b.endTime}:00Z`).getTime() -
+          new Date(`2000-01-01T${b.startTime}:00Z`).getTime()
+        return durationB - durationA
+      })
 
-      return mergedIntervals
+      return commonIntervals
     }
   },
   persist: true
